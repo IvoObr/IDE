@@ -1,26 +1,32 @@
+import './css';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CodeMirror } from './components';
+import 'codemirror/addon/display/autorefresh';
+import 'codemirror/addon/comment/comment';
+import 'codemirror/addon/edit/matchbrackets';
+import 'codemirror/keymap/sublime';
+import 'codemirror/theme/mdn-like.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const code = 'const a = 0;';
+
+
+export default class App extends React.Component {
+    render() {
+        return (
+            <div className="App">
+                <header className=""></header>
+             
+                
+                <CodeMirror
+                    value={code}
+                    options={{
+                        theme: 'mdn-like',
+                        tabSize: 2,
+                        keyMap: 'sublime',
+                        mode: 'js',
+                    }}
+                />
+            </div>
+        );
+    }
 }
-
-export default App;
