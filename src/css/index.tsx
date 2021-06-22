@@ -1,8 +1,8 @@
-const app = require('./app.css');
-const CodeMirror = require('./codemirror.css');
+// const app = require('./app.css');
+const codemirror = require('./codemirror.css');
 
 export {
-    app,
-    CodeMirror
+    // app,
+    // codemirror,
     
 };
