@@ -11,9 +11,11 @@ import React, { useRef, useEffect, useState,
     useImperativeHandle, useMemo } from 'react';
 import CodeMirror, { EditorFromTextArea } from 'codemirror';
 
+let result: any;
+
 //#region Component
 function CodeMirrorCom(props: any = {}, ref: any) {
-    
+
     const options = {
         tabSize: 2,
         keyMap: 'sublime',
@@ -26,9 +28,9 @@ function CodeMirrorCom(props: any = {}, ref: any) {
         theme: 'mdn-like' // 'monokai'
     };
 
-    const textareaRef = useRef();
     const CM = CodeMirror as any;
     const value = props.value || '';
+    const textareaRef: any = useRef();
     const width = props.width || '100%';
     const height = props.height || '100%';
     const [editor, setEditor]: any = useState();
@@ -87,14 +89,14 @@ function CodeMirrorCom(props: any = {}, ref: any) {
     useEffect(() => {
         if (!editor && window) {
             const eventDict = getEventHandleFromProps();
-
-            logger.info(eventDict);
-
             const ref = textareaRef.current as unknown as HTMLTextAreaElement;
-            const instance: EditorFromTextArea = CM.fromTextArea(ref, { ...options });
-            
-            // TODO: instance. todo
-
+            const instance = CM.fromTextArea(ref, { ...options });
+            result = { ...instance };
+            /**
+                var textArea = document.getElementById('myScript');
+                var editor = CodeMirror.fromTextArea(textArea);
+                editor.getDoc().setValue('var msg = "Hi";');
+             */
             Object.keys(eventDict).forEach((event) => 
                 instance.on(eventDict[event], props[event]));
 
@@ -103,6 +105,9 @@ function CodeMirrorCom(props: any = {}, ref: any) {
  
             setEditor(instance);
             setOptions(instance, { ...options });
+
+            // fixme: console.log(instance.getValue()); 
+            
         }
 
         return () => {
@@ -129,7 +134,32 @@ function CodeMirrorCom(props: any = {}, ref: any) {
         setOptions(editor, { ...options });
     }, [editor, options]);
 
-    return <textarea ref={textareaRef as any} />;
+    function run() {
+        const value = result?.doc.cm.getValue();
+        const code = eval(value);
+
+        // result.doc.cm.setValue(value);
+        
+        // const ter: any = document.getElementById("console");
+        // console.log(ter.value);
+        // ter.defaultValue = code;
+        
+    }
+
+    // let codeEval;
+
+    // useState({ codeEval: code })
+
+    return (
+        <div>
+            <textarea id="editor" ref={textareaRef}/>;
+            <button className="btn btn-primary"
+                style={{ "width": "20%" }} id="run"
+                onClick={run}>Run</button>
+            <textarea value={codeEval}></textarea>;
+
+        </div>
+    );
 }
 //#endregion
 

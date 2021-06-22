@@ -1,12 +1,19 @@
 import './css';
 import React from 'react';
+import { logger } from './lib';
 import { CodeMirror } from './components';
 
 const code = `
-const a = 0;
-function mirror() {
-    return a;
+function factorial(n1) {
+    if (n1 < 0) return 'Maximum call stack size exceeded';
+    if (n1 === 0) return 1;
+    else return n1 * factorial(n1 - 1);
 }
+
+const num = -2;
+const result = factorial(num);
+console.log('The factorial of ', num, ' is', result);
+//--------------------------------------------------
 `;
 
 export default class App extends React.Component {
@@ -15,7 +22,7 @@ export default class App extends React.Component {
             <div className="App">
                 <header className=""></header>
 
-                <CodeMirror value={code}/>
+                <CodeMirror value={code} instance={null}/>
             </div>
         );
     }
