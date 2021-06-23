@@ -2,14 +2,15 @@ import '../css/index';
 import 'codemirror/mode/meta';
 import { logger } from '../lib';
 import 'codemirror/keymap/sublime';
+import CodeMirror from 'codemirror';
 import 'codemirror/theme/monokai.css';
 import 'codemirror/theme/mdn-like.css';
 import 'codemirror/addon/hint/show-hint.js';
 import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/addon/display/autorefresh';
+import 'codemirror/addon/hint/javascript-hint.js';
 import React, { useRef, useEffect, useState,
     useImperativeHandle, useMemo } from 'react';
-import CodeMirror, { EditorFromTextArea } from 'codemirror';
 
 let result: any;
 
@@ -53,32 +54,12 @@ function CodeMirrorCom(props: any = {}, ref: any) {
         };
     }
 
-    function snippet(instance: any): void {
-        CodeMirror.showHint(instance, function(): any {
-            const cursor = instance.getCursor();
-            const token = instance.getTokenAt(cursor);
-            const end: number = cursor.ch;
-            const line: number = cursor.line;
-            const start: number = token.start;
-
-            return {
-                list: [],
-                from: CodeMirror.Pos(line, start),
-                to: CodeMirror.Pos(line, end)
-            };
-        }, { completeSingle: false });
-    }
-
     async function setOptions(instance: any, opt: any = {}) {
         if (typeof opt === 'object' && window) {
             const mode = CM.findModeByName(opt.mode || '');
 
             (mode) && (opt.mode = mode.mime);
             (mode?.mode) && await import(`codemirror/mode/${mode.mode}/${mode.mode}.js`);
-
-            instance.setOption('extraKeys', {
-                'Ctrl-Space': () => snippet(instance)
-            });
 
             Object.keys(opt).forEach((name) => 
                 (opt[name] && JSON.stringify(opt[name])) &&
@@ -92,6 +73,13 @@ function CodeMirrorCom(props: any = {}, ref: any) {
             const ref = textareaRef.current as unknown as HTMLTextAreaElement;
             const instance = CM.fromTextArea(ref, { ...options });
             result = { ...instance };
+
+            instance.on("keydown", function(codemirror: any, event: any) {
+                if (event.ctrlKey && event.code === 'Space') {
+                    instance.showHint(instance);
+                }
+            });
+        
             /**
                 var textArea = document.getElementById('myScript');
                 var editor = CodeMirror.fromTextArea(textArea);
@@ -135,15 +123,20 @@ function CodeMirrorCom(props: any = {}, ref: any) {
     }, [editor, options]);
 
     function run() {
-        const value = result?.doc.cm.getValue();
-        const code = eval(value);
+        try {
+            const value = result?.doc.cm.getValue();
+        
+            const code = eval(value);
+            console.log(code);
 
-        // result.doc.cm.setValue(value);
+            // result.doc.cm.setValue(value);
         
-        // const ter: any = document.getElementById("console");
-        // console.log(ter.value);
-        // ter.defaultValue = code;
-        
+            // const ter: any = document.getElementById("console");
+            // console.log(ter.value);
+            // ter.defaultValue = code;
+        } catch (error) {
+            logger.error(error);
+        }
     }
 
     // let codeEval;
@@ -156,7 +149,6 @@ function CodeMirrorCom(props: any = {}, ref: any) {
             <button className="btn btn-primary"
                 style={{ "width": "20%" }} id="run"
                 onClick={run}>Run</button>
-            <textarea value={codeEval}></textarea>;
 
         </div>
     );
