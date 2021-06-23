@@ -34,6 +34,7 @@ function CodeMirrorCom(props: any = {}, ref: any) {
     const textareaRef: any = useRef();
     const width = props.width || '100%';
     const height = props.height || '100%';
+    const [code, setCode]: any = useState();
     const [editor, setEditor]: any = useState();
     useImperativeHandle(ref, () => ({ editor }), [editor]);
 
@@ -79,7 +80,7 @@ function CodeMirrorCom(props: any = {}, ref: any) {
                     instance.showHint(instance);
                 }
             });
-        
+            
             /**
                 var textArea = document.getElementById('myScript');
                 var editor = CodeMirror.fromTextArea(textArea);
@@ -93,9 +94,6 @@ function CodeMirrorCom(props: any = {}, ref: any) {
  
             setEditor(instance);
             setOptions(instance, { ...options });
-
-            // fixme: console.log(instance.getValue()); 
-            
         }
 
         return () => {
@@ -125,31 +123,20 @@ function CodeMirrorCom(props: any = {}, ref: any) {
     function run() {
         try {
             const value = result?.doc.cm.getValue();
-        
-            const code = eval(value);
-            console.log(code);
-
-            // result.doc.cm.setValue(value);
-        
-            // const ter: any = document.getElementById("console");
-            // console.log(ter.value);
-            // ter.defaultValue = code;
+            setCode(value);
+            
         } catch (error) {
             logger.error(error);
         }
     }
 
-    // let codeEval;
-
-    // useState({ codeEval: code })
-
     return (
         <div>
-            <textarea id="editor" ref={textareaRef}/>;
+            <textarea id="editor" ref={textareaRef}/>
             <button className="btn btn-primary"
                 style={{ "width": "20%" }} id="run"
                 onClick={run}>Run</button>
-
+            <div id="console" className="output"><code>&gt; {code}</code></div>
         </div>
     );
 }
