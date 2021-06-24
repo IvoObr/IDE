@@ -42,7 +42,6 @@ function CodeEditor(props: any = {}, ref: any) {
     const ide = CodeMirror as any;
     const value = props.value || '';
     const textareaRef: any = useRef();
-
     const width = props.width || '100%';
     const height = props.height || '100%';
     const [code, setCode]: any = useState();
@@ -130,10 +129,10 @@ function CodeEditor(props: any = {}, ref: any) {
 
     function onKeyDown(instance: any) {
         instance.on("keydown",
-            function(codemirror: any, event: any) {
-                if (event.ctrlKey && event.code === 'Space') {
-                    instance.showHint(instance);
-                }
+            function(space: unknown, event: any) {
+                if (!event.ctrlKey) return;
+                if (event.key === "Alt") run();
+                if (event.code === "Space") instance.showHint(instance);
             });
     }
 
@@ -158,24 +157,18 @@ function CodeEditor(props: any = {}, ref: any) {
     }
 
     function run() {
+        let output = '';
         const log = console.log;
         try {
             const value = (ideInstance as any)?.doc.cm.getValue();
-
-            logger.warn(value);
-
             console.log = function(...args) {
-                let res = '';
-                logger.info(args);
-                args.forEach((output) => {
-                    if (output) {
-                        res += ' ' + output;
-                        setCode(res);
-                    }
+                args.forEach((chunk) => {
+                    output += (' ' + (chunk || ''));
+                    chunk && setCode(output);
                 });
             };
-
             log(executeCode(value));
+
         } catch (error) {
             // log(executeCode(error)); fixme:
             logger.error(error);
@@ -185,6 +178,7 @@ function CodeEditor(props: any = {}, ref: any) {
     return (
         <div>
             <p className="hotkeys">Ctrl + Space for intellisense</p>
+            <p className="hotkeys">Ctrl + Alt to compile</p>
             <textarea id="editor" ref={textareaRef} />
             <br/>
             <button className="btno" id="run" onClick={run}>Run</button>
