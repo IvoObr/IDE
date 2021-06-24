@@ -1,5 +1,5 @@
-import CodeMirror from './CodeMirror';
+import CodeEditor from './CodeEditor';
 
 export {
-    CodeMirror
+    CodeEditor
 };

@@ -1,8 +1,22 @@
-/* BASICS */
+
+.hotkeys{
+  font-family: system-ui;
+}
+
+.btno {
+  width: 5%;
+}
+
+.output{
+   font-family: monospace;
+   font-size: 1.1em;
+}
 
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
   font-family: 'source-code-pro', Menlo, 'Courier New', Consolas, monospace;
+  font-weight: 545;
+  line-height: 1.5em;
   color: black;
   direction: ltr;
   font-size: 14px;
@@ -315,6 +329,8 @@ div.CodeMirror-cursors {
 div.CodeMirror-dragcursors {
   visibility: visible;
 }
+
+
 
 .CodeMirror-focused div.CodeMirror-cursors {
   visibility: visible;

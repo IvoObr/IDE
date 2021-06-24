@@ -1,7 +1,7 @@
 import './css';
 import React from 'react';
 import { logger } from './lib';
-import { CodeMirror } from './components';
+import { CodeEditor } from './components';
 
 const code = `
 function factorial(n1) {
@@ -10,9 +10,9 @@ function factorial(n1) {
     else return n1 * factorial(n1 - 1);
 }
 
-const num = -2;
+const num = 0;
 const result = factorial(num);
-console.log('The factorial of ', num, ' is', result);
+console.log('The factorial of ', num.toString(), ' is', result);
 //--------------------------------------------------
 `;
 
@@ -22,7 +22,7 @@ export default class App extends React.Component {
             <div className="App">
                 <header className=""></header>
 
-                <CodeMirror value={code} instance={null}/>
+                <CodeEditor value={code} instance={null}/>
             </div>
         );
     }
