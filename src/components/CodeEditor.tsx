@@ -9,10 +9,7 @@ import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/addon/display/autorefresh';
 import 'codemirror/addon/hint/javascript-hint.js';
 import CodeMirror, { EditorFromTextArea } from 'codemirror';
-import React, {
-    useRef, useEffect, useState,
-    useImperativeHandle, useMemo
-} from 'react';
+import React, { useRef, useEffect, useState, useImperativeHandle } from 'react';
 
 let ideInstance: EditorFromTextArea;
 
@@ -53,11 +50,9 @@ function CodeEditor(props: any = {}, ref: any) {
             const ref = textareaRef.current as unknown as HTMLTextAreaElement;
             const instance = createInstance(ref);
             ideInstance = { ...instance };
-
             focus(ref, instance);
             onKeyDown(instance);
-            setEventDict(instance);
-            setInstanceOptions(instance);
+            setValue(instance);
             setEditor(instance);
             setOptions(instance, { ...options });
         }
@@ -68,22 +63,6 @@ function CodeEditor(props: any = {}, ref: any) {
             }
         };
     }, []);
-
-    useMemo(() => {
-        if (!editor || !window) return;
-        const val = editor.getValue();
-        (value && value !== val) && editor.setValue(value);
-    }, [value]);
-
-    useMemo(() => {
-        if (!editor || !window) return;
-        editor.setSize(width, height);
-    }, [width, height]);
-
-    useMemo(async () => {
-        if (!editor || !window) return;
-        await setOptions(editor, { ...options });
-    }, [editor, options]);
 
     async function setOptions(instance: any, opt: any = {}) {
         try {
@@ -100,22 +79,6 @@ function CodeEditor(props: any = {}, ref: any) {
         } catch (error) {
             logger.error(error);
         }
-    }
-
-    function getEventHandleFromProps(): any {
-        return {
-            dict: () => {
-                const propNames = Object.keys(props);
-                const eventHandle = propNames.filter((keyName) => /^on+/.test(keyName));
-                return eventHandle.map((el) => {
-                    const name = el.slice(2);
-                    const name2 = name[0];
-                    if (name && name2) {
-                        return name.replace(name2, name2.toLowerCase());
-                    }
-                });
-            }
-        };
     }
 
     function focus(ref: any, instance: any) {
@@ -136,16 +99,9 @@ function CodeEditor(props: any = {}, ref: any) {
             });
     }
 
-    function setInstanceOptions(instance: any) {
+    function setValue(instance: any) {
         instance.setValue(value || '');
         (width || height) && instance.setSize(width, height);
-
-    }
-
-    function setEventDict(instance: any) {
-        const eventDict = getEventHandleFromProps();
-        Object.keys(eventDict).forEach((event) =>
-            instance.on(eventDict[event], props[event]));
     }
 
     function executeCode(code: string) {
