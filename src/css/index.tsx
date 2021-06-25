@@ -1,5 +1,7 @@
-const codemirror = require('./codemirror.css');
+const codeEditor = require('./codeeditor.css');
+const terminal = require('./terminal.css');
 
 export {
-    codemirror
+    codeEditor,
+    terminal
 };

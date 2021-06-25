@@ -1,6 +1,7 @@
 import '../css/index';
 import 'codemirror/mode/meta';
 import { logger } from '../lib';
+import Terminal from './Terminal';
 import 'codemirror/keymap/sublime';
 import 'codemirror/theme/monokai.css';
 import 'codemirror/theme/mdn-like.css';
@@ -135,11 +136,14 @@ function CodeEditor(props: any = {}, ref: any) {
         <div>
             <p className="hotkeys">Ctrl + Space for intellisense</p>
             <p className="hotkeys">Ctrl + Alt to compile</p>
-            <textarea id="editor" ref={textareaRef} />
-            <br/>
+            <textarea role="textbox" id="editor" ref={textareaRef} />
             <button className="btno" id="run" onClick={run}>Run</button>
-            <br/><br/>
-            <div id="console" className="output"><code>&gt; {code}</code></div>
+            
+            <Terminal id="console"
+                className="output"
+                code={code} />
+            
+            {/* <div id="console" className="output"><code>&gt; {code}</code></div> */}
         </div>
     );
 }
