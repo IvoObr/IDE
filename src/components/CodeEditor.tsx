@@ -114,7 +114,7 @@ function CodeEditor(props: any = {}, ref: any) {
 
     function run() {
         let output = '';
-        const log = console.log;
+        const log = console.log; // original log fixme:
         try {
             const value = (ideInstance as any)?.doc.cm.getValue();
             console.log = function(...args) {
@@ -126,7 +126,7 @@ function CodeEditor(props: any = {}, ref: any) {
             log(executeCode(value));
 
         } catch (error) {
-            // log(executeCode(error)); fixme:
+            // log(executeCode(error)); todo:
             logger.error(error);
         }
     }
