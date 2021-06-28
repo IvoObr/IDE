@@ -116,11 +116,11 @@ function CodeEditor(props: any = {}, ref: any) {
 
     function run() {
         try {
-            let output = '';
             const log = console.log;
             const value = (ideInstance as any)?.doc.cm.getValue();
             
             console.log = function(...args) {
+                let output = '';
                 args.forEach((chunk) => {
                     output += (' ' + (chunk || ''));
                     chunk && setCode(output);
