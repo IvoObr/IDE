@@ -8,7 +8,7 @@ import React from 'react';
 function Terminal(props: any = {}, ref: any) {
 
     const { code } = props;
-    
+
     return (<div className="container">
         <div className="Terminal">
             <div className="Terminal__body">

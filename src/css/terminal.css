@@ -11,7 +11,7 @@ body {
 }
 
 .Terminal {
-  width: 40% !important;
+  width: 60% !important;
   height: 18em !important;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, .5);
   font-size: 1.1em;

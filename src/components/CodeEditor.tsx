@@ -110,24 +110,27 @@ function CodeEditor(props: any = {}, ref: any) {
             (new Function(code))();
         } catch (error) {
             logger.error(error);
+            setCode('❌ ' + error.stack);
         }
     }
 
     function run() {
-        let output = '';
-        const log = console.log; // original log fixme:
         try {
+            let output = '';
+            const log = console.log;
             const value = (ideInstance as any)?.doc.cm.getValue();
+            
             console.log = function(...args) {
                 args.forEach((chunk) => {
                     output += (' ' + (chunk || ''));
                     chunk && setCode(output);
                 });
+                log.apply(console, args);
             };
-            log(executeCode(value));
 
+            console.log(executeCode(value));
+            
         } catch (error) {
-            // log(executeCode(error)); todo:
             logger.error(error);
         }
     }
@@ -135,15 +138,13 @@ function CodeEditor(props: any = {}, ref: any) {
     return (
         <div>
             <p className="hotkeys">Ctrl + Space for intellisense</p>
-            <p className="hotkeys">Ctrl + Alt to compile</p>
+            <p className="hotkeys">Ctrl + Alt to run</p>
             <textarea role="textbox" id="editor" ref={textareaRef} />
             <button className="btno" id="run" onClick={run}>Run</button>
             
             <Terminal id="console"
                 className="output"
                 code={code} />
-            
-            {/* <div id="console" className="output"><code>&gt; {code}</code></div> */}
         </div>
     );
 }

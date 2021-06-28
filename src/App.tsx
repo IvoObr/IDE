@@ -10,7 +10,7 @@ function factorial(n1) {
     else return n1 * factorial(n1 - 1);
 }
 
-const num = 0;
+const num = 2 0;
 const result = factorial(num);
 console.log('The factorial of ', num.toString(), ' is', result);
 //--------------------------------------------------
