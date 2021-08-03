@@ -1,0 +1,38 @@
+li {
+    font-size: 1.25rem;
+    font-family: CustomOpenSans, sans-serif;
+    font-weight: 500;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.54);
+    margin: 0 0.5em;
+}
+
+.header {
+    height: 3em;
+}
+
+a {
+    padding: 0 1em;
+}
+
+.chevron {
+    fill: rgba(216, 216, 216);
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.leftBorder {
+    border-right: 2px solid rgba(216, 216, 216);
+}
+
+.floatLeft {
+    float: left;
+}
+
+.floatRight {
+    float: right;
+}
+
+.right0 {
+    right: 0
+}

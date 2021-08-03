@@ -1,7 +1,7 @@
 import './css';
 import React from 'react';
 import { logger } from './lib';
-import { CodeEditor } from './components';
+import { CodeEditor, Header } from './components';
 
 const code = `
 function factorial(n1) {
@@ -20,8 +20,7 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <header className=""></header>
-
+                <Header/>
                 <CodeEditor value={code} instance={null}/>
             </div>
         );
