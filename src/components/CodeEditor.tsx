@@ -136,7 +136,7 @@ function CodeEditor(props: any = {}, ref: any) {
     }
 
     return (
-        <div>
+        <div className="editorContainer">
             <p className="hotkeys">Ctrl + Space for intellisense</p>
             <p className="hotkeys">Ctrl + Alt to run</p>
             <textarea role="textbox" id="editor" ref={textareaRef} />

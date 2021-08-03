@@ -1,0 +1,8 @@
+.nav {
+    position: sticky;
+    float: left; 
+    width: 4em;
+    height: 100vh;
+    bottom: 0;
+    background-color: #1F2D4C;
+}

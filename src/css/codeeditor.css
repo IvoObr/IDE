@@ -3,6 +3,9 @@
   line-height: 0.5em;
 }
 
+.editorContainer  {
+}
+
 .btno {
   width: 5%;
   margin-top: 2em;
@@ -26,6 +29,7 @@
   border: 1px solid gray;
   width: 60% !important;
   height: 20em !important;
+  /* left: 5em; */
 }
 
 .CodeMirror-lines {
