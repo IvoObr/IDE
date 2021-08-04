@@ -1,8 +1,17 @@
 .nav {
-    position: sticky;
-    float: left; 
+    position: fixed;
+    float: left;
     width: 4em;
-    height: 100vh;
+    height: 100%;
     bottom: 0;
     background-color: #1F2D4C;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    top: 4em;
+}
+
+.nav:hover {
+    width: 12em;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
 }

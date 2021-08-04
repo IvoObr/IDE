@@ -8,6 +8,7 @@ li {
 }
 
 .header {
+    padding: 0px;
     height: 4em;
     position: sticky;
     width: 100%;
@@ -17,9 +18,13 @@ li {
     z-index: 1;
 }
 
+ol {
+    margin: 0;
+    padding-top: 1em;
+}
 
 a {
-    padding: 0 1em;
+    padding: 1em;
 }
 
 .chevron {

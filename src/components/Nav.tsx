@@ -1,6 +1,7 @@
 
 import '../css/index';
 import React from 'react';
+import home from '../images/home.svg';
 
 //#region Header
 function Header(props: any = {}, ref: any) {
@@ -9,14 +10,16 @@ function Header(props: any = {}, ref: any) {
 
     return (
         <div className="nav">
-            <nav className="">
-                <ol className="">
-                    <li className="floatLeft">
-                        <span>Embed Playground</span>
-                    </li>
+            {/* <nav className=""> */}
+            <ol className="">
+                <li className="floatLeft">
+                    <a className="">
+                        <img src={home} alt="Sisense Logo" />
+                    </a>
+                </li>
             
-                </ol>
-            </nav>
+            </ol>
+            {/* </nav> */}
         </div>
     );
 

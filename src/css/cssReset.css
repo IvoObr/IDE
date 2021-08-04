@@ -2,6 +2,7 @@ ol, ul {
     list-style: none;
 }
 
-body {
+html, head, body {
     margin: 0;
+    padding: 0;
 }
