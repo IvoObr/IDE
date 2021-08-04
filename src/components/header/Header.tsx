@@ -2,13 +2,13 @@
 import './header.css';
 import React from 'react';
 import { logger } from '../../lib';
+import chevron from '../../images/chevron.svg';
 import devXLogo from '../../images/devx_logo.svg';
+
 import logoSisense from '../../images/logo_sisense.svg';
 
 //#region Header
 function Header(props: any = {}, ref: any) {
-
-    // const { code } = props;
 
     return (
         <div className="header">
@@ -25,9 +25,8 @@ function Header(props: any = {}, ref: any) {
                         <span>Embed Playground</span>
                     </li>
                     <span className="chevron floatLeft">
-                        <svg className="chevron floatLeft">
-                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-                        </svg>                    </span>
+                        <img src={chevron} alt="chevron" />
+                    </span>
                     {/* <li className="floatLeft">
                         <span>Iframe</span>
                     </li> */}
