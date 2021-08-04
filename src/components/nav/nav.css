@@ -1,5 +1,6 @@
 .nav {
     position: fixed;
+    z-index: 1;
     float: left;
     width: 4em;
     height: 100%;
@@ -10,8 +11,28 @@
     top: 4em;
 }
 
+.navLi {
+    height: 3em;
+    padding-left: 1em;
+}
+
+
 .nav:hover {
-    width: 12em;
+    width: 15em;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
+}
+
+.navText {
+    color: #FFD537;
+    margin-left: 2em;
+    font-family: CustomOpenSans, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.01071em;
+    opacity: 0;
+}
+
+.visible {
+    transition: opacity 0.5s ease-in;
+    opacity: 1;
 }

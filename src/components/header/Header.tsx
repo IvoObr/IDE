@@ -12,7 +12,7 @@ function Header(props: any = {}, ref: any) {
 
     return (
         <div className="header">
-            <a className="floatLeft leftBorder"
+            <a className="floatLeft leftBorder headerA"
                 target="_blank"
                 href="https://www.sisense.com/"
                 rel="noopener noreferrer">
@@ -20,8 +20,8 @@ function Header(props: any = {}, ref: any) {
             </a>
 
             <nav className="">
-                <ol className="">
-                    <li className="floatLeft">
+                <ol className="headerOl">
+                    <li className="floatLeft headerLi">
                         <span>Embed Playground</span>
                     </li>
                     <span className="chevron floatLeft">
@@ -34,7 +34,7 @@ function Header(props: any = {}, ref: any) {
                 </ol>
             </nav>
 
-            <a className="floatRight"
+            <a className="floatRight headerA"
                 target="_blank"
                 href="https://sisense.dev/"
                 rel="noopener noreferrer">

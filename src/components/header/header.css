@@ -1,4 +1,4 @@
-li {
+.headerLi {
     font-size: 1.25rem;
     font-family: CustomOpenSans, sans-serif;
     font-weight: 500;
@@ -18,12 +18,12 @@ li {
     z-index: 1;
 }
 
-ol {
+.headerOl {
     margin: 0;
     padding-top: 1em;
 }
 
-a {
+.headerA {
     padding: 1em;
 }
 
