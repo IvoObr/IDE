@@ -1,9 +1,9 @@
 
-import '../css/index';
+import './header.css';
 import React from 'react';
-import { logger } from '../lib';
-import devXLogo from '../images/devx_logo.svg';
-import logoSisense from '../images/logo_sisense.svg';
+import { logger } from '../../lib';
+import devXLogo from '../../images/devx_logo.svg';
+import logoSisense from '../../images/logo_sisense.svg';
 
 //#region Header
 function Header(props: any = {}, ref: any) {

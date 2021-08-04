@@ -1,7 +1,7 @@
 
-import '../css/index';
+import './nav.css';
 import React from 'react';
-import home from '../images/home.svg';
+import home from '../../images/home.svg';
 
 //#region Header
 function Header(props: any = {}, ref: any) {

@@ -1,7 +1,7 @@
 
-import '../css/index';
+import './terminal.css';
 import 'codemirror/mode/meta';
-import { logger } from '../lib';
+import { logger } from '../../lib';
 import React from 'react';
 
 //#region Terminal

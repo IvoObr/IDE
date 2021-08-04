@@ -1,11 +1,11 @@
-import CodeEditor from './CodeEditor';
-import Terminal from './Terminal';
-import Header from './Header';
-import Nav from './Nav';
+import Nav from './nav/Nav';
+import Header from './header/Header';
+import Terminal from './terminal/Terminal';
+import CodeEditor from './codeEditor/CodeEditor';
 
 export {
-    CodeEditor,
-    Terminal,
+    Nav,
     Header,
-    Nav
+    Terminal,
+    CodeEditor
 };

@@ -1,7 +1,7 @@
-import '../css/index';
+import './codeEditor.css';
 import 'codemirror/mode/meta';
-import { logger } from '../lib';
-import Terminal from './Terminal';
+import { logger } from '../../lib';
+import Terminal from '../terminal/Terminal';
 import 'codemirror/keymap/sublime';
 import 'codemirror/theme/monokai.css';
 import 'codemirror/theme/mdn-like.css';
