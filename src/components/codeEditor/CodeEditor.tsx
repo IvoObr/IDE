@@ -14,7 +14,7 @@ import React, { useRef, useEffect, useState, useImperativeHandle } from 'react';
 
 let ideInstance: EditorFromTextArea;
 
-//#region Component
+//#region CodeEditor
 function CodeEditor(props: any = {}, ref: any) {
 
     const options = {

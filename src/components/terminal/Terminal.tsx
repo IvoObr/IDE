@@ -1,8 +1,7 @@
 
 import './terminal.css';
-import 'codemirror/mode/meta';
-import { logger } from '../../lib';
 import React from 'react';
+import 'codemirror/mode/meta';
 
 //#region Terminal
 function Terminal(props: any = {}, ref: any) {

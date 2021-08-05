@@ -1,7 +1,6 @@
 
 import './header.css';
 import React from 'react';
-import { logger } from '../../lib';
 import chevron from '../../images/chevron.svg';
 import devXLogo from '../../images/devx_logo.svg';
 
